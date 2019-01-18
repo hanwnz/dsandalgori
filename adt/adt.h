@@ -25,12 +25,14 @@ struct adtset_t {
 	int 	 (*capacity)(adtset_t t);
 	void     (*insert)  (adtset_t t, int index, adtval_t x);
 	void     (*push)    (adtset_t t, adtval_t x);
-	void     (*pop)     (adtset_t t);
+	adtval_t (*pop)     (adtset_t t);
 	void     (*reverse) (adtset_t t);
-	void     (*print)   (adtset_t t);
+	void     (*print)   (adtset_t t, int index);
+	void     (*prints)  (adtset_t t);
 	void     (*iterate) (adtset_t t, int (*func) ());
 	void     (*remove)  (adtset_t t, int index);
-	void     (*find)    (adtset_t t, adtval_t x);
+	int      (*find)    (adtset_t t, adtval_t x);
+	adtval_t (*locate)  (adtset_t t, int index);
 	/* data elements */
 	int       __sz;
 	int       __capacity; 
@@ -41,11 +43,17 @@ extern void     adt_member_init(adtset_t t);
 extern adtset_t adt_new(int size);
 extern int      adt_isempty(adtset_t t);
 extern int      adt_size(adtset_t t);
+extern int      adt_capacity(adtset_t t);
 extern void     adt_insert(adtset_t t, int index, adtval_t x);
-extern void     adt_print(adtset_t t);
+extern void     adt_push(adtset_t, adtval_t x);
+extern adtval_t adt_pop(adtset_t);
+extern void     adt_reverse(adtset_t t);
+extern void     adt_print(adtset_t t, int index);
+extern void     adt_prints(adtset_t t);
 extern void     adt_iterate(adtset_t t, int (*func) ());
 extern void     adt_remove(adtset_t t, int index);
 extern int      adt_find(adtset_t t, adtval_t x);
+extern adtval_t adt_locate(adtset_t t, int index);
 
 /* function of adt */
 #define adt_alloc(size, pointer)	\

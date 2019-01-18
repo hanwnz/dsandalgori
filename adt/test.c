@@ -5,7 +5,8 @@
  * time     : Mon 14 Jan 2019 05:32:19 PM CST
  */
 
-#include <self/adt.h>
+//#include <self/adt.h>
+#include "adt.h"
 
 void print(adtset_t t);
 
@@ -23,15 +24,19 @@ int main(void)
 		t->insert(t, i, i+1);
 	t->insert(t, i, i+1);
 	t->push(t, 111);
-	t->print(t);
+	t->prints(t);
 	putchar('\n');
 	printf("Set size: %d, Set capacity: %d\n", t->__sz, t->__capacity);
 	t->reverse(t);
-	t->print(t);
+	t->prints(t);
 	putchar('\n');
-	adtset_t t1;
-	t1 = adt_new(10);
-	t1->print(t1);
-	
+
+	printf("-------------------------------------\n");
+	/* Split line */
+	t->prints(t);
+	putchar('\n');
+	int index = t->find(t, 5);
+	printf("%d element's index is %d\n", 5, index);
+	printf("Element %d at %d\n", index, t->locate(t, index)); 
 	return 0;
 }

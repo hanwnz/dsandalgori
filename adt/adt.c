@@ -81,12 +81,19 @@ void adt_reverse(adtset_t t)
 	}
 }
 
-void adt_pop(adtset_t t)
+adtval_t adt_pop(adtset_t t)
 {
+	adtval_t tmp = t->__set[t->__sz];
 	t->__set[t->__sz] = UNDEFINED;
+	return tmp;
 }
 
-void adt_print(adtset_t t)
+void adt_print(adtset_t t, int index)
+{
+	printf("%d", t->__set[index]);
+}
+
+void adt_prints(adtset_t t)
 {
 	int i;
 	for (i = 0; i < t->__sz; i++) {
@@ -94,6 +101,22 @@ void adt_print(adtset_t t)
 	}
 }
 
+int adt_find(adtset_t t, adtval_t x)
+{
+	assert(t);
+	int i;
+	for (i = 0; i < t->__sz; i++) {
+		if (t->__set[i] == x)
+			return i;
+	}
+	return -1;
+}
+
+adtval_t adt_locate(adtset_t t, int index)
+{
+	assert(t && index > -1);
+	return t->__set[index];
+}
 void adt_iterate(adtset_t t, int (*func) ())
 {
 	/* Not implementation */
@@ -105,10 +128,14 @@ void adt_member_init(adtset_t t)
 	t->isempty  = adt_isempty;
 	t->capacity = adt_capacity;
 	t->insert   = adt_insert;
+	t->remove   = adt_remove;
 	t->push     = adt_push;
 	t->pop      = adt_pop;
 	t->reverse  = adt_reverse;
+	t->prints   = adt_prints;
 	t->print    = adt_print;
+	t->find     = adt_find;	
+	t->locate   = adt_locate;	
 	t->iterate  = adt_iterate;
 }
 
