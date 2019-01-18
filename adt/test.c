@@ -5,7 +5,7 @@
  * time     : Mon 14 Jan 2019 05:32:19 PM CST
  */
 
-#include "adt.h"
+#include <self/adt.h>
 
 void print(adtset_t t);
 
@@ -26,6 +26,12 @@ int main(void)
 	t->print(t);
 	putchar('\n');
 	printf("Set size: %d, Set capacity: %d\n", t->__sz, t->__capacity);
-
+	t->reverse(t);
+	t->print(t);
+	putchar('\n');
+	adtset_t t1;
+	t1 = adt_new(10);
+	t1->print(t1);
+	
 	return 0;
 }

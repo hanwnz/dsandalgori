@@ -9,5 +9,6 @@
 #define _ALLOC_H
 
 #define NEW(x)		x = (__typeof(x)) malloc(sizeof(__typeof(*x)));
+#define FREE(x)		free(x); 
 
 #endif

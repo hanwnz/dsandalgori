@@ -16,3 +16,11 @@ gentype *doubleset(gentype *target, int size)
 	memcpy(result, target, n / 2);
 	return result;
 }
+
+void swap(gentype *a, gentype *b)
+{
+	gentype tmp;
+	tmp = *a;
+	*a  = *b;
+	*b  = tmp;
+}
