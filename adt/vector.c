@@ -5,36 +5,36 @@
  * time     : Mon 14 Jan 2019 05:08:56 PM CST
  */
 
-#include "adt.h"
+#include "vector.h"
 #include "alloc.h"
 #include "general.h"
 
-adtset_t adt_new(int size)
+Vector vec_new(int size)
 {
-	adtset_t t;
+	Vector t;
 	NEW(t);
-	adt_alloc(size, t->__set);
-	adt_foreach(size, UNDEFINED, t->__set);
+	vec_alloc(size, t->__set);
+	vec_foreach(size, UNDEFINED, t->__set);
 	t->__sz = 0;
 	t->__capacity = size;
 	return t;
 }
-int adt_isempty(adtset_t t)
+int vec_isempty(Vector t)
 {
 	return t->__sz == 0;
 }
 
-int adt_size(adtset_t t)
+int vec_size(Vector t)
 {
 	return t->__sz;
 }
 
-int adt_capacity(adtset_t t)
+int vec_capacity(Vector t)
 {
 	return t->__capacity;
 }
 
-void adt_insert(adtset_t t, int index, adtval_t x)
+void vec_insert(Vector t, int index, vec_t x)
 {
 	int i;
 	assert(t);
@@ -51,7 +51,7 @@ void adt_insert(adtset_t t, int index, adtval_t x)
 	t->__sz++;
 }
 
-void adt_remove(adtset_t t, int index)
+void vec_remove(Vector t, int index)
 {
 	/* Exception of adt remove function */
 	assert(index > 0 || index < t->__sz);
@@ -64,14 +64,14 @@ void adt_remove(adtset_t t, int index)
 
 }
 
-void adt_push(adtset_t t, adtval_t x)
+void vec_push(Vector t, vec_t x)
 {
 	if (t->__sz > t->__capacity)
 		t->__set = doubleset(t->__set, t->__capacity);
-	adt_insert(t, t->__sz, x);
+	vec_insert(t, t->__sz, x);
 }
 
-void adt_reverse(adtset_t t)
+void vec_reverse(Vector t)
 {
 	/* reverse the adt */
 	int i;
@@ -81,19 +81,19 @@ void adt_reverse(adtset_t t)
 	}
 }
 
-adtval_t adt_pop(adtset_t t)
+vec_t vec_pop(Vector t)
 {
-	adtval_t tmp = t->__set[t->__sz];
+	vec_t tmp = t->__set[t->__sz];
 	t->__set[t->__sz] = UNDEFINED;
 	return tmp;
 }
 
-void adt_print(adtset_t t, int index)
+void vec_print(Vector t, int index)
 {
 	printf("%d", t->__set[index]);
 }
 
-void adt_prints(adtset_t t)
+void vec_prints(Vector t)
 {
 	int i;
 	for (i = 0; i < t->__sz; i++) {
@@ -101,7 +101,7 @@ void adt_prints(adtset_t t)
 	}
 }
 
-int adt_find(adtset_t t, adtval_t x)
+int vec_find(Vector t, vec_t x)
 {
 	assert(t);
 	int i;
@@ -112,30 +112,30 @@ int adt_find(adtset_t t, adtval_t x)
 	return -1;
 }
 
-adtval_t adt_locate(adtset_t t, int index)
+vec_t vec_locate(Vector t, int index)
 {
 	assert(t && index > -1);
 	return t->__set[index];
 }
-void adt_iterate(adtset_t t, int (*func) ())
+void vec_iterate(Vector t, int (*func) ())
 {
 	/* Not implementation */
 }
 
-void adt_member_init(adtset_t t)
+void vec_member_init(Vector t)
 {
-	t->size     = adt_size;
-	t->isempty  = adt_isempty;
-	t->capacity = adt_capacity;
-	t->insert   = adt_insert;
-	t->remove   = adt_remove;
-	t->push     = adt_push;
-	t->pop      = adt_pop;
-	t->reverse  = adt_reverse;
-	t->prints   = adt_prints;
-	t->print    = adt_print;
-	t->find     = adt_find;	
-	t->locate   = adt_locate;	
-	t->iterate  = adt_iterate;
+	t->size     = vec_size;
+	t->isempty  = vec_isempty;
+	t->capacity = vec_capacity;
+	t->insert   = vec_insert;
+	t->remove   = vec_remove;
+	t->push     = vec_push;
+	t->pop      = vec_pop;
+	t->reverse  = vec_reverse;
+	t->prints   = vec_prints;
+	t->print    = vec_print;
+	t->find     = vec_find;	
+	t->locate   = vec_locate;	
+	t->iterate  = vec_iterate;
 }
 

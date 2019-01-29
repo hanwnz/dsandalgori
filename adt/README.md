@@ -8,3 +8,6 @@ Some macros of memory allocate.
 Some generally functions.
 ## test*.c
 Source file for test.
+
+## How to build it?
+Input `make install` as root account, it will create library and automatic build enviroment.</br>
