@@ -1,7 +1,7 @@
 # Code for ADT
 ***
-## adt.h adt.c
-The source files 'adt.h' describe the basic function and structure.
+## vector.h vector.c
+The source files 'vector.h' describe the basic function and structure.
 ## alloc.h
 Some macros of memory allocate.
 ## general.h
