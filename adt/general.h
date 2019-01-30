@@ -5,9 +5,11 @@
  * time     : Mon 14 Jan 2019 06:42:27 PM CST
  */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 typedef int 	gentype;
+
 
 gentype *doubleset(gentype *target, int size)
 {
@@ -23,4 +25,12 @@ void swap(gentype *a, gentype *b)
 	tmp = *a;
 	*a  = *b;
 	*b  = tmp;
+}
+
+/* exception process */
+
+void exception(const char *msg)
+{
+	fprintf(stderr, "%s\n", msg);
+	exit(-1);
 }

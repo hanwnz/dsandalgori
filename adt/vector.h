@@ -14,7 +14,7 @@
 #include <assert.h>
 
 #define UNDEFINED	-((int)'k')	/* Magic number */
-typedef int 		vec_t;
+typedef int 		vec_t;		
 #define bool 	_Bool 
 typedef struct Vector *Vector;
 
@@ -23,16 +23,18 @@ struct Vector {
 	int      (*isempty) (Vector t);
 	int      (*size)    (Vector t);
 	int 	 (*capacity)(Vector t);
+	void 	 (*make_empty) (Vector t);
 	void     (*insert)  (Vector t, int index, vec_t x);
 	void     (*push)    (Vector t, vec_t x);
-	vec_t (*pop)     (Vector t);
+	vec_t    (*pop)     (Vector t);
 	void     (*reverse) (Vector t);
 	void     (*print)   (Vector t, int index);
 	void     (*prints)  (Vector t);
 	void     (*iterate) (Vector t, int (*func) ());
 	void     (*remove)  (Vector t, int index);
 	int      (*find)    (Vector t, vec_t x);
-	vec_t (*locate)  (Vector t, int index);
+	vec_t    (*locate)  (Vector t, int index);
+	Vector 	 (*resize)  (Vector t, int size);
 	/* data elements */
 	int       __sz;
 	int       __capacity; 
@@ -40,21 +42,22 @@ struct Vector {
 };
 
 extern void     vec_member_init(Vector t);
-extern Vector vec_new(int size);
+extern Vector   vec_new(int size, vec_t val);
 extern int      vec_isempty(Vector t);
 extern int      vec_size(Vector t);
 extern int      vec_capacity(Vector t);
+extern void 	vec_make_empty(Vector t);
 extern void     vec_insert(Vector t, int index, vec_t x);
 extern void     vec_push(Vector, vec_t x);
-extern vec_t vec_pop(Vector);
+extern vec_t    vec_pop(Vector);
 extern void     vec_reverse(Vector t);
 extern void     vec_print(Vector t, int index);
 extern void     vec_prints(Vector t);
 extern void     vec_iterate(Vector t, int (*func) ());
 extern void     vec_remove(Vector t, int index);
 extern int      vec_find(Vector t, vec_t x);
-extern vec_t vec_locate(Vector t, int index);
-
+extern vec_t    vec_locate(Vector t, int index);
+extern Vector   vec_resize(Vector t, int size);
 /* function of adt */
 #define vec_alloc(size, pointer)	\
 	pointer = (__typeof(pointer)) malloc(sizeof(__typeof(*pointer)) * size);
