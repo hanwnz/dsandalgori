@@ -14,7 +14,9 @@
 #include "allocate.h"
 
 enum exception {
+	NULL_EXCEPTION   = 0,
 	MEMORY_EXCEPTION = 256,
+	STACK_EXCEPTION,
 
 };
 extern void raise_exception(enum exception e, const char *fmt, ...);

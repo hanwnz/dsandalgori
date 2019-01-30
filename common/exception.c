@@ -13,17 +13,21 @@ void raise_exception(enum exception e, const char *fmt, ...)
 	va_start(ap, fmt);
 	do_exception(e, fmt, ap); 
 	va_end(ap);
+	putchar('\n');
+	exit(-1);
 }
 
 void do_exception(enum exception e, const char *fmt, va_list ap)
 {
 	char buf[MAXBUF];
-	vsnprintf(buf, MAXBUF - 1, fmt, ap);
-	if (e)
-		snprintf(buf + strlen(buf), MAXBUF - 1, 
-				"%s", get_exception_err(e));
-	strcat(buf, "\n");
-	fflush(stdout);
+	int len = 0;
+	if (e) {
+		char *estr = get_exception_err(e);
+		len = strlen(estr);
+		snprintf(buf, MAXBUF - 1, 
+				"%s", estr);
+	}
+	vsnprintf(buf + len, MAXBUF - 1, fmt, ap);
 	fputs(buf, stderr);
 	fflush(stdout);
 }
@@ -33,10 +37,13 @@ char *get_exception_err(enum exception e)
 	char *buf = NEW(buf);
 	switch (e) {
 	case MEMORY_EXCEPTION:
-		buf = "Memory allocate exception\n";
+		buf = "Memory allocate exception: ";
+		break;
+	case STACK_EXCEPTION:
+		buf = "Stack error: ";
 		break;
 	default:
-		buf = "Unknown's exception\n";
+		buf = "Unknown's exception: ";
 		break;
 	}
 	return buf;

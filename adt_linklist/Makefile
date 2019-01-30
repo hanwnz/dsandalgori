@@ -15,6 +15,10 @@ USRLIBDIR = /usr/lib/selflib
 INCLUDEDIR = /usr/include
 LIBDIR 	   = /usr/lib
 HEADER := allocate.h exception.h linklist.h
+CFLAGS += -I../include
+
+vpath %.h ../include
+vpath exception.c ../common
 
 $(LIB): $(OBJ)
 	$(AR) $(ARFLAGS) $@ $(OBJ)
