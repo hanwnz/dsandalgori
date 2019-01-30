@@ -22,21 +22,22 @@ int main(void)
 				fprintf(stderr, "Occured an error\n");
 				exit(-1);
 			}
+			int poped;
 			switch (c) {
 			case ')':
-				if (STK_pop(stk) != '(') {
-					fprintf(stderr, "Occured an error\n");
+				if ((poped = STK_pop(stk)) != '(') {
+					fprintf(stderr, "Error: %c have not match\n", poped);
 					exit(-1);
 				}
 				break;
 			case '}':
-				if (STK_pop(stk) != '{') {
-					fprintf(stderr, "Occured an error\n");
+				if ((poped = STK_pop(stk)) != '{') {
+					fprintf(stderr, "Error: %c have not match\n", poped);
 					exit(-1);
 				}
 				break;
 			case ']':
-				if (STK_pop(stk) != '[') {
+				if ((poped = STK_pop(stk)) != '[') {
 					fprintf(stderr, "Occured an error\n");
 					exit(-1);
 				}
