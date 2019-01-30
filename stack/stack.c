@@ -85,3 +85,8 @@ dtype_t STK_pop(T stk)
 	return elem;
 
 }
+
+dtype_t STK_get_top(T stk)
+{
+	return stk->next->elem;
+}

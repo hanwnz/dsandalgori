@@ -23,6 +23,10 @@ $(LIB): $(OBJ)
 	ranlib $@
 $(OBJ): exception.c stack.c
 
+test: $(OBJ)
+	$(CC) *.o bktmatch.c -o bktmatch
+	$(CC) *.o suffix.c -o suffix
+	$(CC) *.o infix2suffix.c -o infix2suffix
 install: $(LIB) 
 	if [ -e "$(USRDIR)" ] && [ -e "$(USRLIBDIR)" ];  \
 	then 			         \
@@ -41,4 +45,4 @@ install: $(LIB)
 	fi   				 
 	
 clean:
-	rm -rf $(OBJ) $(LIB)
+	rm -rf $(OBJ) $(LIB) bktmatch suffix infix2suffix

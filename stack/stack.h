@@ -17,7 +17,9 @@ extern int     STK_is_empty(T stk);
 extern void    STK_make_empty(T stk);
 extern void    STK_push(T stk, dtype_t x);
 extern dtype_t STK_pop(T stk);
+extern dtype_t STK_get_top(T stk);
 extern void    STK_prints(T stk);
+
 #undef T 
 
 #endif
