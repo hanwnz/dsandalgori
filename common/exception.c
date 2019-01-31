@@ -45,6 +45,9 @@ char *get_exception_err(enum exception e)
 	case QUEUE_EXCEPTION:
 		buf = "Queue error: ";
 		break;
+	case TREE_EXCEPTION:
+		buf = "Tree error: ";
+		break;
 	default:
 		buf = "Unknown's exception: ";
 		break;
