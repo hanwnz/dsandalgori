@@ -42,6 +42,9 @@ char *get_exception_err(enum exception e)
 	case STACK_EXCEPTION:
 		buf = "Stack error: ";
 		break;
+	case QUEUE_EXCEPTION:
+		buf = "Queue error: ";
+		break;
 	default:
 		buf = "Unknown's exception: ";
 		break;

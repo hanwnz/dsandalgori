@@ -17,7 +17,7 @@ enum exception {
 	NULL_EXCEPTION   = 0,
 	MEMORY_EXCEPTION = 256,
 	STACK_EXCEPTION,
-
+	QUEUE_EXCEPTION,
 };
 extern void raise_exception(enum exception e, const char *fmt, ...);
 extern void do_exception(enum exception e, const char *fmt, va_list ap);
