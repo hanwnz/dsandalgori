@@ -11,11 +11,11 @@
 int main(void)
 {
 	BinSearchTree bst = NULL;
-	bst = BST_insert(bst, 5);
-	BST_insert(bst, 3);
-	BST_insert(bst, 6);
-	BST_insert(bst, 4);
-	BST_insert(bst, 1);
+	bst = BST_insert(bst, 3);
+	bst = BST_insert(bst, 2);
+	bst = BST_insert(bst, 1);
+	bst = BST_insert(bst, 4);
+	bst = BST_insert(bst, 0);
 	BinSearchTree min, max;
 	min = BST_getmin(bst);
 	printf("This tree min is: %d\n", BST_retrieve(min));
